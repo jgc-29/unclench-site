@@ -1,127 +1,112 @@
-# Unclench — Go-Live Checklist
-
-Everything you need to turn this from a working prototype into a live shop taking real orders. Ordered roughly by sequence. Rough costs and time are UK-oriented, 2026.
-
----
-
-## What you already have
-
-A complete, responsive, on-brand front-end: homepage, shop, three product pages, the branching consultation engine (with scoring + red-flag routing), a working cart (add / remove / quantity / persistent drawer), and a checkout page. The checkout is **structured for Stripe** — the integration point is stubbed and commented in `assets/store.js` (the `checkout()` function).
-
-What it does **not** yet have: real payment processing, an order database, transactional emails, the impression-kit/scan fulfilment flow, the dentist-review workflow, or any legal/regulatory registration. Those are below.
-
----
-
-## A. Decision to make first: Stripe-on-your-own-site vs. Shopify
-
-Before you spend on anything else, decide the commerce backbone. This is the single biggest fork.
-
-**Option 1 — Keep this site + Stripe (what's built).** You own the code and the look completely. But *you* are then responsible for: a small backend server, order storage, emails, refunds, subscription logic, tax, and PCI scope. More control, more engineering.
-
-**Option 2 — Shopify (recommended for launch).** Rebuild these pages as a Shopify theme (the design ports directly). Shopify handles payments, orders, shipping, VAT, refunds, and subscriptions out of the box, and the consultation quiz can stay as a custom page that adds the recommended product to the Shopify cart. Far less to build and maintain; ~£25–90/mo plus transaction fees. **For a physical-product DTC brand this is almost certainly the right call** — hand-rolling Stripe only makes sense if you have a developer on hand and a strong reason.
-
-The rest of this checklist covers the **Stripe path** (since that's what's wired). If you choose Shopify, items B, D, and E largely collapse into Shopify's built-in tooling.
-
----
-
-## B. Payments — connecting Stripe (if staying on this site)
-
-1. **Create a Stripe account** at stripe.com → activate it with your business details (you'll need company registration, bank account, and ID). Approval is usually same-day.
-2. **Create Products & Prices** in the Stripe Dashboard — one Price per item. Copy each **Price ID** (`price_...`) into the `priceId` fields in `assets/store.js` → `CATALOGUE`.
-   - Mark **Unwind** and **Refresh** as *recurring* prices (they're subscriptions).
-3. **Stand up a tiny backend** for one job: creating a Stripe Checkout Session. Cheapest routes:
-   - A single **serverless function** (Vercel / Netlify Functions / Cloudflare Workers) — ~20 lines, uses `stripe.checkout.sessions.create()`.
-   - Point the commented production block in `checkout()` at that function's URL.
-4. **Set up a webhook** (`checkout.session.completed`) so you're notified of paid orders — this is what triggers fulfilment and emails.
-5. **Test in test mode** with Stripe's test cards, then flip to live keys.
-
-> Never put your Stripe **secret key** in the front-end. It lives only on the server/serverless function. The publishable key is the only one that touches the browser.
-
----
-
-## C. Hosting & domain — getting it live on the web
-
-1. **Buy the domain.** Check `unclench.com` / `.co.uk` availability (see the big caveat in section H first). Namecheap, Cloudflare, or Google Domains. ~£8–30/yr.
-2. **Host the static site.** These files are plain HTML/CSS/JS, so any of these work and most have free tiers:
-   - **Netlify** or **Vercel** — drag-and-drop or connect a GitHub repo; auto-HTTPS; free tier is plenty to start. *(Recommended — they also host the serverless checkout function from section B.)*
-   - **Cloudflare Pages** — same idea.
-3. **Point the domain** at the host (update DNS / nameservers — the host gives step-by-step).
-4. **HTTPS** is automatic on all the above. Confirm the padlock shows.
-5. **Set up a professional email** (e.g. hello@unclench.com) — Google Workspace or Fastmail, ~£5/user/mo.
-
----
-
-## D. Order fulfilment — the physical flow
-
-This is the part software doesn't solve; you need the operational chain in place before launch.
-
-1. **Impression kits.** Source and stock home dental impression kits (or a scan-upload path for those who have STLs). Decide packaging and postage.
-2. **Lab relationship.** Contract with a UK dental lab to fabricate the plates from returned impressions/scans. Agree turnaround (you're advertising 10–14 days), per-unit cost, and courier.
-3. **Fulfilment trigger.** On a paid order (Stripe webhook), your process should: email the customer, dispatch an impression kit, and open a case record.
-4. **Returns handling** for impressions coming back → routed to the lab.
-5. **Shipping** of the finished plate to the customer.
-
----
-
-## E. The software you still need (Stripe path)
-
-- **Order database** — even a simple one (Airtable, or a Supabase/Postgres table) to track each order's stage: paid → kit sent → impressions received → **dentist review** → lab → shipped.
-- **Transactional emails** — order confirmation, kit-on-the-way, review-approved, shipped. Use Resend, Postmark, or SendGrid.
-- **The dentist-review step** *(critical — see section H)* — a queue where a GDC-registered dentist sees each case (impressions/scan + consultation answers) and approves or flags **before** the lab fabricates. This is both a clinical necessity and your legal basis for the "dentist-reviewed" claim. It can start as simply as a shared dashboard + the order database; it does not need to be fancy, but it must actually happen for every order.
-- **Consultation data capture** — right now the quiz runs entirely in the browser and nothing is saved. To use the answers for the dentist review (and for the "apnoea-screen sizes the MAD market" insight), POST the answers to your backend on completion.
-
----
-
-## F. Analytics & marketing setup
-
-- **Analytics** — Plausible (privacy-friendly, no cookie banner needed) or GA4.
-- **Meta Pixel / Google Ads tag** if you'll run paid acquisition (you will) — needed for conversion tracking and retargeting.
-- **Email/SMS platform** — Klaviyo is the DTC standard; captures abandoned carts and runs the post-purchase flow.
-- **Cookie consent banner** if you use any non-essential cookies (Pixel/GA) — legally required in the UK/EU.
-
----
-
-## G. Legal & policy pages (the footer links are currently placeholders)
-
-- **Terms & Conditions**, **Privacy Policy**, **Shipping & Returns**, **Cookie Policy** — get these written properly; templates exist but a solicitor review is worth it given the medical angle.
-- **Company** — register the entity, show company number and registered address.
-- **Returns law** — note that custom-made goods have different distance-selling return rights; your policy must reflect that honestly.
-
----
-
-## H. Regulatory & professional — do NOT skip these
-
-This is where Unclench differs from an ordinary DTC brand, and where the real risk sits. Handle before launch, ideally with proper advice.
-
-1. **Custom-made medical devices.** The plates are Class I custom-made devices under UK MDR 2002 (as amended). You'll need to be a **registered manufacturer with the MHRA**, hold the required documentation, and issue the custom-made device statement. Every legitimate UK DTC dental-appliance seller does this — it's routine but mandatory.
-2. **The named prescriber / dentist review.** A custom-made device needs a prescribing clinician. Your async dentist-review step *is* that — so it has to be genuinely in the flow for every order, not decorative. This also underpins your "dentist-reviewed" advertising claim.
-3. **GDC & advertising claims.** "Designed by dental experts" and "dentist-reviewed" are fine **as long as they're true and evidenced** (they are — your and Dr. Greenwall's credentials). Two rules: keep every claim tied to the real credentials, and **do not use the word "specialist"** unless a named dentist is on a relevant GDC specialist list (there isn't one for bruxism/TMD). ASA/CAP will test any health claim against whether you can evidence it.
-4. **Consultation = triage, not diagnosis.** The red-flag routing must genuinely send flagged cases to clinical care rather than sell them a device — that's both the ethical line and your defensibility. It's built to do this; make sure the "book a clinical assessment" path connects to a real booking/clinic.
-5. **The botox/masseter pathway** is a regulated clinical treatment delivered in-clinic (Jersey/Guernsey/London) — keep it clearly separated from the DTC device purchase, prescriber-led, and severity-gated as designed.
-6. **Data protection.** You're processing health-related data (symptoms). Register with the **ICO**, and make sure storage/consent is handled properly (this raises the bar on your privacy policy and where consultation data is stored).
-
----
-
-## I. The name — flagged separately because it's load-bearing
-
-Before you print anything or buy the domain in earnest:
-
-- **Trademark search & registration.** "Unclench" is a common English verb, which makes a trademark **harder to register and defend** and makes SEO/paid search more competitive. Get a trademark attorney's read on whether a mark (likely the stylised wordmark + the coral full stop, rather than the bare word) is registrable in the relevant classes. Hold a reserve name in case it isn't.
-- **Domain + social handles** — secure them together once the name is cleared.
-
----
-
-## Suggested sequence
-
-1. Decide **Shopify vs. Stripe-on-own-site** (section A).
-2. Clear the **name / trademark** and buy the domain (I, C).
-3. Get **MHRA registration + dentist-review workflow + legal pages** underway — these have lead time (H, G).
-4. Stand up **payments + hosting** (B, C) and the **order/email/review software** (E).
-5. Lock the **fulfilment chain** — kits, lab, shipping (D).
-6. Layer on **analytics + marketing** (F).
-7. Soft-launch in **Stripe test mode / limited release**, then go live.
-
----
-
-### Fastest path to "live and taking orders"
-If you want to be selling in weeks rather than months: **Shopify** (A2) + a **Shopify subscriptions app** + the consultation quiz as a custom page, with the **MHRA registration and dentist-review workflow running in parallel** (H) since those are the true gating items, not the tech. The design here ports straight into a Shopify theme.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn — Jaw Clenching, Grinding & Tension, Explained | Unclench</title>
+<meta name="description" content="Medically reviewed guides to jaw clenching, teeth grinding, tension headaches and masseter treatment — written by dentists, not marketers.">
+<link rel="canonical" href="https://un-clench.com/learn.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Unclench">
+<meta property="og:title" content="Learn — Jaw Clenching, Grinding & Tension, Explained | Unclench">
+<meta property="og:description" content="Medically reviewed guides to jaw clenching, teeth grinding, tension headaches and masseter treatment.">
+<meta property="og:url" content="https://un-clench.com/learn.html">
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  .art-hero{background:var(--clench);color:var(--bone);padding:80px 32px 64px}
+  .art-hero-inner{max-width:760px;margin:0 auto}
+  .crumbs{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:0.08em;color:var(--paper-dim);margin-bottom:26px}
+  .crumbs a{color:var(--sage-soft)}
+  .art-hero h1{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(30px,5vw,50px);letter-spacing:-0.03em;line-height:1;margin-bottom:20px}
+  .art-hero .standfirst{font-size:18px;color:rgba(240,235,226,0.75);line-height:1.55}
+  .byline{margin-top:28px;display:flex;align-items:center;gap:14px;padding-top:24px;border-top:1px solid var(--line-dark)}
+  .byline .b-avatar{width:44px;height:44px;border-radius:50%;background:var(--coral);color:var(--clench);display:flex;align-items:center;justify-content:center;font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:15px;flex-shrink:0}
+  .byline .b-info{font-size:13px;line-height:1.5;color:var(--sage-soft)}
+  .byline .b-info strong{color:var(--bone);font-family:'Archivo',sans-serif;font-weight:600;display:block}
+  .art-body{padding:72px 32px 90px;background:var(--bone)}
+  .art-inner{max-width:720px;margin:0 auto}
+  .art-inner h2{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:clamp(22px,3vw,30px);letter-spacing:-0.015em;margin:44px 0 16px;line-height:1.1}
+  .art-inner h2:first-child{margin-top:0}
+  .art-inner p{font-size:16.5px;color:var(--slate);line-height:1.75;margin-bottom:18px}
+  .art-inner p strong{color:var(--ink);font-weight:600}
+  .art-inner ul{margin:0 0 18px 22px}
+  .art-inner li{font-size:16px;color:var(--slate);line-height:1.7;margin-bottom:8px}
+  .callout{background:var(--clench);color:var(--bone);border-radius:12px;padding:30px 32px;margin:36px 0}
+  .callout h3{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:20px;margin-bottom:10px}
+  .callout p{color:rgba(240,235,226,0.78);font-size:15px;margin-bottom:18px}
+  .flag{background:#FBEAE7;border-left:3px solid var(--coral);border-radius:0 10px 10px 0;padding:20px 24px;margin:28px 0}
+  .flag p{font-size:14.5px;color:var(--ink);margin:0;line-height:1.6}
+  .next-reads{padding:70px 32px;background:var(--bone-2)}
+  .nr-inner{max-width:var(--maxw);margin:0 auto}
+  .nr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  .nr-card{background:var(--bone);border:1px solid var(--line);border-radius:8px;padding:26px;transition:transform .2s}
+  .nr-card:hover{transform:translateY(-3px)}
+  .nr-card .nr-tag{font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--coral-deep);font-weight:600}
+  .nr-card h4{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:18px;margin:12px 0 8px;letter-spacing:-0.01em;line-height:1.15}
+  .nr-card p{font-size:13.5px;color:var(--slate);line-height:1.5}
+  @media(max-width:820px){.nr-grid{grid-template-columns:1fr}}
+</style>
+<style>.hub-hero{background:var(--clench);color:var(--bone);padding:88px 32px 72px;text-align:left}
+.hub-hero .hh-inner{max-width:var(--maxw);margin:0 auto}
+.hub-hero h1{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(34px,6vw,60px);letter-spacing:-0.03em;line-height:0.95;margin:18px 0}
+.hub-hero p{max-width:540px;font-size:17px;color:rgba(240,235,226,0.72);line-height:1.6}
+.hub-body{padding:70px 32px 100px;background:var(--bone)}
+.hub-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.hub-grid{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-mark">unclench<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="store.html">Shop</a>
+      <a href="learn.html">Learn</a>
+      <a href="about.html">Our story</a>
+    </div>
+    <div class="nav-right">
+      <a href="consultation.html" class="nav-cta">Assessment</a>
+      <button class="cart-btn" onclick="openCart()">Cart <span class="cart-count" style="display:none">0</span></button>
+    </div>
+  </div>
+</nav>
+<header class="hub-hero"><div class="hh-inner">
+  <span class="eyebrow">Learn</span>
+  <h1>Tension, explained properly.</h1>
+  <p>Guides to clenching, grinding and the headaches they cause — written by our clinical team and medically reviewed by Dr. Linda Greenwall. No scare tactics, no jargon.</p>
+</div></header>
+<section class="hub-body"><div class="hub-grid">
+  <a class="nr-card" href="learn-jaw-clenching.html">
+    <span class="nr-tag">Guide</span>
+    <h4>Why do I clench my jaw — and how do I stop?</h4>
+    <p>Daytime clenching is a hidden habit with visible consequences: tension, headaches and a tired, aching jaw. Here's what d…</p>
+  </a>
+  <a class="nr-card" href="learn-teeth-grinding.html">
+    <span class="nr-tag">Guide</span>
+    <h4>Teeth grinding in your sleep: signs, causes and what to do</h4>
+    <p>You can't will yourself to stop grinding at night — but you can protect your teeth, ease the morning symptoms and reduce…</p>
+  </a>
+  <a class="nr-card" href="learn-tension-headaches.html">
+    <span class="nr-tag">Guide</span>
+    <h4>The headache that starts in your jaw</h4>
+    <p>Temple pain on waking, or a tightening band by mid-afternoon: many 'tension headaches' are jaw-muscle headaches. Here's …</p>
+  </a>
+  <a class="nr-card" href="learn-jaw-slimming.html">
+    <span class="nr-tag">Guide</span>
+    <h4>Masseter tension & jaw slimming, explained</h4>
+    <p>Heavy clenching trains the jaw muscle like a workout — tension, headaches and a squarer jawline. An honest, educational …</p>
+  </a></div></section>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="fb-mark">unclench<span class="dot">.</span></div><p>The tension brand, run by dentists. Custom bite plates and a real clinical pathway for clenching, grinding and jaw tension.</p></div>
+      <div class="footer-col"><h5>Shop</h5><a href="product-night-plate.html">Night Plate</a><a href="product-day-plate.html">Day Plate</a><a href="product-reset-kit.html">Reset Kit</a><a href="store.html">All products</a></div>
+      <div class="footer-col"><h5>Learn</h5><a href="learn-jaw-clenching.html">Jaw clenching</a><a href="learn-teeth-grinding.html">Teeth grinding</a><a href="learn-tension-headaches.html">Tension headaches</a><a href="learn-jaw-slimming.html">Masseter &amp; jaw slimming</a></div>
+      <div class="footer-col"><h5>Company</h5><a href="about.html">Our story</a><a href="consultation.html">Free consultation</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Unclench. All rights reserved.</span><span>Made in the UK · Dentist-reviewed</span></div>
+    <p class="footer-legal">This content is for general information and is not a substitute for professional advice, diagnosis or treatment. If you have jaw locking, persistent unexplained pain, or signs of a sleep disorder, seek clinical care — our consultation will route you appropriately.</p>
+  </div>
+</footer>
+<script src="assets/store.js"></script>
+</body>
+</html>

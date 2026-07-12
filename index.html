@@ -3,366 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Jaw Clenching Consultation — 3 Minutes | Unclench</title>
-<meta name="description" content="A free 3-minute clinical consultation that maps your symptoms, tells you whether you clench by day or night, and prescribes the right device. Dentist-reviewed.">
-
-<link rel="canonical" href="https://un-clench.com/consultation.html">
+<title>Unclench — Custom Bite Plates for Jaw Clenching & Tension Headaches</title>
+<meta name="description" content="Custom bite plates and a real clinical pathway for clenching, grinding and tension headaches. Designed by dental experts. Dentist-reviewed. Made in the UK.">
+<link rel="canonical" href="https://un-clench.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Unclench">
-<meta property="og:title" content="Free Jaw Clenching Consultation — 3 Minutes | Unclench">
-<meta property="og:description" content="A free 3-minute clinical consultation that maps your symptoms, tells you whether you clench by day or night, and prescribes the right device. Dentist-reviewed.">
-<meta property="og:url" content="https://un-clench.com/consultation.html">
+<meta property="og:title" content="Unclench — Custom Bite Plates for Jaw Clenching & Tension Headaches">
+<meta property="og:description" content="Custom bite plates and a real clinical pathway for clenching, grinding and tension headaches. Designed by dental experts. Dentist-reviewed. Made in the UK.">
+<meta property="og:url" content="https://un-clench.com/">
+<meta property="og:image" content="https://un-clench.com/assets/images/product-hero-plate.jpg">
 <meta name="twitter:card" content="summary_large_image">
-
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Unclench","url":"https://un-clench.com","description":"The tension brand, run by dentists. Custom bite plates and a clinical pathway for jaw clenching, grinding and tension headaches.","founder":[{"@type":"Person","name":"Dr. Linda Greenwall","jobTitle":"Co-founder, Dentist"}],"areaServed":"GB"}
+</script>
 <link rel="stylesheet" href="assets/brand.css">
 <style>
-  body{background:var(--clench);color:var(--bone)}
-  .q-wrap{max-width:640px;margin:0 auto;padding:40px 24px 90px;min-height:100vh;display:flex;flex-direction:column}
-  .q-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:44px}
-  .q-brand{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:20px;color:var(--bone)}
-  .q-exit{font-family:'Archivo',sans-serif;font-size:13px;color:var(--paper-dim)}
+  /* ================= HERO — split editorial ================= */
+  .hero{background:var(--clench);color:var(--bone);position:relative;overflow:hidden}
+  .hero-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px)}
+  .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:80px 64px 80px 40px}
+  .hero-kick{font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);margin-bottom:36px}
+  .hero-word{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(52px,6.5vw,92px);line-height:0.88;letter-spacing:-0.035em;color:var(--bone);margin-bottom:34px}
+  .hero-word .loosen span{display:inline-block;transition:letter-spacing .7s cubic-bezier(.2,.7,.2,1)}
+  .hero-lede{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(19px,2vw,24px);color:rgba(240,235,226,0.85);line-height:1.4;max-width:420px;margin-bottom:44px}
+  .hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .hero-quiet{font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage-soft);border-bottom:1px solid rgba(180,192,172,0.4);padding-bottom:3px;transition:all .2s}
+  .hero-quiet:hover{color:var(--bone);border-color:var(--bone)}
+  .hero-media{position:relative;overflow:hidden}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+  .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,27,58,0.35),transparent 40%)}
+  .hero-caption{position:absolute;bottom:28px;right:32px;z-index:3;font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(240,235,226,0.85)}
+  .hero-baseline{border-top:1px solid var(--line-dark)}
+  .hero-baseline-inner{max-width:1240px;margin:0 auto;padding:22px 40px;display:flex;gap:48px;flex-wrap:wrap;font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,235,226,0.45)}
 
-  .progress{height:3px;background:rgba(240,235,226,0.12);border-radius:100px;margin-bottom:52px;overflow:hidden}
-  .progress i{display:block;height:100%;background:var(--coral);border-radius:100px;width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  /* ================= STATEMENT ================= */
+  .statement{background:var(--bone);padding:150px 40px}
+  .statement-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+  .statement .eyebrow{display:block;margin-bottom:0;padding-top:8px}
+  .statement-lead{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(26px,3.4vw,42px);line-height:1.18;color:var(--ink);letter-spacing:-0.005em}
+  .statement-lead strong{font-style:normal;font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:0.88em;color:var(--coral-deep)}
+  .statement-body{margin-top:36px;font-size:16.5px;color:var(--slate);line-height:1.8;max-width:560px}
 
-  .step{display:none;animation:fade .5s ease}
-  .step.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  /* ================= PRODUCTS — image-led editorial ================= */
+  .range{background:var(--bone);padding:0 40px 150px}
+  .range-inner{max-width:1240px;margin:0 auto}
+  .range-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;gap:24px;flex-wrap:wrap}
+  .range-head h2{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(30px,4vw,48px);letter-spacing:-0.03em;line-height:1;color:var(--ink)}
+  .range-head a{font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid var(--line);padding-bottom:3px;transition:all .2s}
+  .range-head a:hover{color:var(--coral-deep);border-color:var(--coral)}
+  .range-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .rcard{display:block}
+  .rcard-media{position:relative;overflow:hidden;aspect-ratio:4/4.6;background:var(--bone-2)}
+  .rcard-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .rcard:hover .rcard-media img{transform:scale(1.045)}
+  .rcard-flag{position:absolute;top:18px;left:18px;font-family:'Archivo',sans-serif;font-weight:600;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone);background:rgba(30,27,58,0.72);backdrop-filter:blur(6px);padding:7px 14px}
+  .rcard-body{padding:22px 2px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+  .rcard-body h3{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.015em;color:var(--ink)}
+  .rcard-body .sub{font-size:13.5px;color:var(--slate);margin-top:6px;line-height:1.5;max-width:250px}
+  .rcard-price{font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:var(--ink);white-space:nowrap}
+  .rcard-price small{display:block;font-size:11px;color:var(--paper-dim);font-weight:500;text-align:right;margin-top:2px}
 
-  .q-eyebrow{font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--coral);margin-bottom:18px}
-  .q-title{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:clamp(26px,4.5vw,38px);letter-spacing:-0.02em;line-height:1.08;margin-bottom:14px;color:var(--bone)}
-  .q-help{font-size:15px;color:rgba(240,235,226,0.6);margin-bottom:34px;line-height:1.55}
+  /* ================= DIPTYCH ================= */
+  .diptych{display:grid;grid-template-columns:1fr 1fr}
+  .dip{position:relative;min-height:560px;overflow:hidden}
+  .dip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .dip .dip-scrim{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:48px}
+  .dip.t .dip-scrim{background:linear-gradient(180deg,rgba(30,27,58,0.05) 40%,rgba(30,27,58,0.8))}
+  .dip.r .dip-scrim{background:linear-gradient(180deg,rgba(30,27,58,0) 40%,rgba(30,27,58,0.65))}
+  .dip h3{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(26px,3vw,40px);letter-spacing:-0.025em;color:var(--bone)}
+  .dip p{font-size:15px;color:rgba(240,235,226,0.75);margin-top:10px;max-width:380px;line-height:1.6}
 
-  .options{display:flex;flex-direction:column;gap:12px}
-  .opt{background:var(--clench-2);border:1px solid var(--line-dark);border-radius:12px;padding:20px 22px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:16px;text-align:left}
-  .opt:hover{border-color:var(--coral);background:#312c5c}
-  .opt.selected{border-color:var(--coral);background:#312c5c}
-  .opt .check{width:22px;height:22px;border-radius:50%;border:2px solid var(--line-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
-  .opt.selected .check{border-color:var(--coral);background:var(--coral)}
-  .opt.selected .check::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
-  .opt-body{flex:1}
-  .opt-label{font-family:'Archivo',sans-serif;font-weight:600;font-size:16px;color:var(--bone)}
-  .opt-sub{font-size:13px;color:rgba(240,235,226,0.5);margin-top:3px}
-  .opt.multi .check{border-radius:6px}
-  .opt.multi.selected .check::after{border-radius:2px}
+  /* ================= METHOD — editorial rows ================= */
+  .method{background:var(--clench);color:var(--bone);padding:150px 40px}
+  .method-inner{max-width:1240px;margin:0 auto}
+  .method-head{max-width:520px;margin-bottom:80px}
+  .method-head .eyebrow{display:block;margin-bottom:20px}
+  .method-head h2{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(30px,4vw,48px);letter-spacing:-0.03em;line-height:1.02}
+  .m-row{display:grid;grid-template-columns:100px 1fr 1.4fr;gap:40px;padding:44px 0;border-top:1px solid var(--line-dark);align-items:baseline}
+  .m-row:last-child{border-bottom:1px solid var(--line-dark)}
+  .m-num{font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:var(--coral)}
+  .m-row h3{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.015em}
+  .m-row p{font-size:15px;color:rgba(240,235,226,0.65);line-height:1.7;max-width:520px}
 
-  .q-nav{margin-top:36px;display:flex;justify-content:space-between;align-items:center;gap:14px}
-  .q-back{background:none;border:none;color:var(--paper-dim);font-family:'Archivo',sans-serif;font-size:14px;cursor:pointer}
-  .q-back:hover{color:var(--bone)}
+  /* ================= EXPERTS ================= */
+  .experts{background:var(--bone);padding:150px 40px}
+  .experts-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  .experts-media{position:relative;overflow:hidden;aspect-ratio:4/4.4}
+  .experts-media img{width:100%;height:100%;object-fit:cover}
+  .experts-media figcaption{position:absolute;bottom:20px;left:22px;font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,235,226,0.9);background:rgba(30,27,58,0.55);backdrop-filter:blur(6px);padding:8px 14px}
+  .experts-copy .eyebrow{display:block;margin-bottom:22px}
+  .experts-copy h2{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.03em;line-height:1.02;color:var(--ink);margin-bottom:28px}
+  .experts-copy p{font-size:16px;color:var(--slate);line-height:1.8;margin-bottom:18px;max-width:480px}
+  .experts-copy p strong{color:var(--ink);font-weight:600}
+  .experts-quote{font-family:'Newsreader',serif;font-style:italic;font-size:20px;color:var(--ink);line-height:1.45;padding-left:24px;border-left:2px solid var(--coral);margin:32px 0}
+  .experts-link{font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--clench);border-bottom:1px solid var(--coral);padding-bottom:3px;transition:color .2s}
+  .experts-link:hover{color:var(--coral-deep)}
 
-  /* ---------- RESULT ---------- */
-  .result{display:none;animation:fade .6s ease}
-  .result.active{display:block}
-  .result-card{background:var(--bone);color:var(--ink);border-radius:16px;overflow:hidden}
-  .rc-top{padding:40px 36px 34px;position:relative;overflow:hidden}
-  .rc-top.self{background:var(--sage);color:var(--clench)}
-  .rc-top.enhanced{background:var(--clench);color:var(--bone)}
-  .rc-top.clinical{background:var(--coral);color:var(--clench)}
-  .rc-profile-label{font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;opacity:.7;margin-bottom:14px}
-  .rc-profile{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(24px,4vw,34px);letter-spacing:-0.02em;line-height:1.05}
-  .rc-summary{margin-top:14px;font-size:15px;line-height:1.55;opacity:.9;max-width:440px}
-  .rc-body{padding:34px 36px 40px}
-  .rc-rec-label{font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--coral-deep);margin-bottom:18px}
-  .rc-prod{display:flex;gap:16px;align-items:center;padding:18px;border:1px solid var(--line);border-radius:12px;margin-bottom:12px}
-  .rc-prod-thumb{width:60px;height:60px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:11px;text-align:center;padding:5px}
-  .rc-prod-thumb.night{background:var(--clench);color:var(--bone)}
-  .rc-prod-thumb.day{background:var(--coral);color:var(--clench)}
-  .rc-prod-thumb.kit{background:var(--sage);color:var(--clench)}
-  .rc-prod-info{flex:1}
-  .rc-prod-info h4{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;margin-bottom:3px}
-  .rc-prod-info p{font-size:13px;color:var(--slate);line-height:1.45}
-  .rc-prod-price{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:var(--clench)}
-  .rc-note{margin-top:20px;padding:18px;background:var(--bone-2);border-radius:10px;font-size:13.5px;color:var(--slate);line-height:1.55}
-  .rc-note strong{color:var(--ink)}
-  .rc-actions{margin-top:26px;display:flex;flex-direction:column;gap:10px}
-  .clinical-flag{background:rgba(30,27,58,0.1);border-radius:10px;padding:16px 18px;margin-top:16px;font-size:13.5px;line-height:1.5}
+  /* ================= ASSESSMENT — one quiet band ================= */
+  .assess{background:var(--bone-2);padding:110px 40px}
+  .assess-inner{max-width:820px;margin:0 auto;text-align:center}
+  .assess .eyebrow{display:block;margin-bottom:22px}
+  .assess h2{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,40px);letter-spacing:-0.025em;line-height:1.05;color:var(--ink);margin-bottom:18px}
+  .assess p{font-size:16px;color:var(--slate);line-height:1.7;max-width:520px;margin:0 auto 36px}
+
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-media{min-height:52vw;order:-1}
+    .hero-copy{padding:56px 24px 64px}
+    .statement-inner,.experts-inner{grid-template-columns:1fr;gap:36px}
+    .range-grid{grid-template-columns:1fr}
+    .diptych{grid-template-columns:1fr}
+    .dip{min-height:70vw}
+    .m-row{grid-template-columns:56px 1fr;gap:18px}
+    .m-row p{grid-column:2}
+    .statement,.range,.method,.experts{padding-left:24px;padding-right:24px}
+    .statement,.method,.experts{padding-top:96px;padding-bottom:96px}
+    .range{padding-bottom:96px}
+  }
 </style>
 </head>
 <body>
 
-<div class="q-wrap">
-  <div class="q-top">
-    <a href="index.html" class="q-brand">unclench<span class="dot">.</span></a>
-    <a href="index.html" class="q-exit">Exit</a>
+<nav class="nav on-dark">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-mark">unclench<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="store.html">Shop</a>
+      <a href="learn.html">Learn</a>
+      <a href="about.html">Our story</a>
+    </div>
+    <div class="nav-right">
+      <a href="consultation.html" class="nav-cta">Assessment</a>
+      <button class="cart-btn" onclick="openCart()">Cart <span class="cart-count" style="display:none">0</span></button>
+    </div>
   </div>
+</nav>
 
-  <div class="progress"><i id="bar"></i></div>
-
-  <!-- ===== QUESTIONS ===== -->
-  <form id="quiz">
-
-    <!-- Q1 symptoms (multi) -->
-    <div class="step active" data-step="0" data-multi="true">
-      <div class="q-eyebrow">Symptoms · Question 1 of 6</div>
-      <h2 class="q-title">What are you noticing?</h2>
-      <p class="q-help">Select everything that applies. Most people tick more than one.</p>
-      <div class="options">
-        <div class="opt multi" data-val="headache" data-flag="0"><div class="check"></div><div class="opt-body"><div class="opt-label">Headaches — especially in the morning or at the temples</div></div></div>
-        <div class="opt multi" data-val="jaw" data-flag="0"><div class="check"></div><div class="opt-body"><div class="opt-label">A sore, tired or aching jaw</div></div></div>
-        <div class="opt multi" data-val="wear" data-flag="0"><div class="check"></div><div class="opt-body"><div class="opt-label">Worn, flattened or sensitive teeth</div></div></div>
-        <div class="opt multi" data-val="grind" data-flag="0"><div class="check"></div><div class="opt-body"><div class="opt-label">A partner has heard me grinding at night</div></div></div>
-        <div class="opt multi" data-val="clench-day" data-flag="0"><div class="check"></div><div class="opt-body"><div class="opt-label">I catch myself clenching during the day</div></div></div>
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-kick">For jaws that won't quit</div>
+      <h1 class="hero-word"><span class="loosen" id="heroWord"><span>u</span><span>n</span><span>c</span><span>l</span><span>e</span><span>n</span><span>c</span><span>h</span><span class="dot">.</span></span></h1>
+      <p class="hero-lede">Custom bite plates and a real clinical pathway for clenching, grinding and the headaches they cause.</p>
+      <div class="hero-actions">
+        <a href="store.html" class="btn btn-coral btn-lg">Shop the plates</a>
+        <a href="consultation.html" class="hero-quiet">Take the assessment</a>
       </div>
     </div>
+    <div class="hero-media">
+      <img src="assets/images/product-hero-plate.jpg" alt="A custom Unclench bite plate, crystal clear, on a warm bone background">
+      <span class="hero-caption">The Night Plate · custom-made</span>
+    </div>
+  </div>
+  <div class="hero-baseline">
+    <div class="hero-baseline-inner">
+      <span>Designed by dental experts</span>
+      <span>Dentist-reviewed, every order</span>
+      <span>Made in the UK</span>
+    </div>
+  </div>
+</header>
 
-    <!-- Q2 timing -->
-    <div class="step" data-step="1">
-      <div class="q-eyebrow">Pattern · Question 2 of 6</div>
-      <h2 class="q-title">When is it worst?</h2>
-      <p class="q-help">This tells us whether you need a night or a daytime device — the single most important question.</p>
-      <div class="options">
-        <div class="opt" data-val="night" data-score="0"><div class="check"></div><div class="opt-body"><div class="opt-label">Worst when I wake up</div><div class="opt-sub">Points to night-time grinding or clenching</div></div></div>
-        <div class="opt" data-val="day" data-score="0"><div class="check"></div><div class="opt-body"><div class="opt-label">Builds through the day</div><div class="opt-sub">Points to awake clenching — often desk or stress-related</div></div></div>
-        <div class="opt" data-val="both" data-score="1"><div class="check"></div><div class="opt-body"><div class="opt-label">Both, honestly</div><div class="opt-sub">Common — we'll prioritise night protection</div></div></div>
+<!-- ============ STATEMENT ============ -->
+<section class="statement">
+  <div class="statement-inner">
+    <span class="eyebrow">Why Unclench</span>
+    <div>
+      <p class="statement-lead reveal">Everyone else sells a piece of plastic. We named the <strong>condition</strong> — and built the relief around it.</p>
+      <p class="statement-body reveal">Most people who clench don't know they're doing it. They know the morning headaches, the tired jaw by lunchtime, the tension that builds at a desk. Unclench starts with the symptom, not the appliance — and every device we make is reviewed by a GDC-registered dentist before it exists.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RANGE ============ -->
+<section class="range">
+  <div class="range-inner">
+    <div class="range-head reveal">
+      <h2>The range.</h2>
+      <a href="store.html">View all products</a>
+    </div>
+    <div class="range-grid">
+      <a href="product-night-plate.html" class="rcard reveal">
+        <div class="rcard-media">
+          <img src="assets/images/product-hero-plate.jpg" alt="The Night Plate — a custom night guard for teeth grinding">
+          <span class="rcard-flag">Best seller</span>
+        </div>
+        <div class="rcard-body">
+          <div><h3>The Night Plate</h3><p class="sub">For grinding and clenching in your sleep. Soft or clinical-grade Hard.</p></div>
+          <div class="rcard-price">From £119<small>Hard £169</small></div>
+        </div>
+      </a>
+      <a href="product-day-plate.html" class="rcard reveal">
+        <div class="rcard-media">
+          <img src="assets/images/day-plate-thin.jpg" alt="The Day Plate held up to the light, ultra-thin and nearly invisible">
+          <span class="rcard-flag">Daytime</span>
+        </div>
+        <div class="rcard-body">
+          <div><h3>The Day Plate</h3><p class="sub">Ultra-thin and invisible, for the clenching you do at your desk.</p></div>
+          <div class="rcard-price">£139</div>
+        </div>
+      </a>
+      <a href="product-reset-kit.html" class="rcard reveal">
+        <div class="rcard-media">
+          <img src="assets/images/kit-flatlay.jpg" alt="The Reset Kit — plate, supplement, balm and release tool arranged together">
+          <span class="rcard-flag">Complete system</span>
+        </div>
+        <div class="rcard-body">
+          <div><h3>The Reset Kit</h3><p class="sub">Plate, Unwind, balm, release tool and the habit programme.</p></div>
+          <div class="rcard-price">£179</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIPTYCH ============ -->
+<section class="diptych" aria-label="The tension and the release">
+  <div class="dip t">
+    <img src="assets/images/tension-desk.jpg" alt="A man at his desk at night, hand pressed to his jaw in tension">
+    <div class="dip-scrim">
+      <h3>The tension.</h3>
+      <p>Jaw tight through every deadline. Temples aching by late afternoon. You've been holding on all day.</p>
+    </div>
+  </div>
+  <div class="dip r">
+    <img src="assets/images/release-chair.jpg" alt="The same man relaxed in an armchair in morning light, jaw released">
+    <div class="dip-scrim">
+      <h3>The release.</h3>
+      <p>The right device, the right habits, and — where it's needed — a genuine clinical pathway.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section class="method">
+  <div class="method-inner">
+    <div class="method-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>From symptoms to a quieter jaw.</h2>
+    </div>
+    <div class="m-row reveal">
+      <span class="m-num">One</span>
+      <h3>Tell us what you notice</h3>
+      <p>A short assessment maps your symptoms and tells us whether you clench by day, by night, or both — and screens for anything that needs a clinician first.</p>
+    </div>
+    <div class="m-row reveal">
+      <span class="m-num">Two</span>
+      <h3>Impressions, at home</h3>
+      <p>Take impressions with our kit, or upload an existing intraoral scan. Everything converges to a precise digital model of your teeth.</p>
+    </div>
+    <div class="m-row reveal">
+      <span class="m-num">Three</span>
+      <h3>A dentist reviews your case</h3>
+      <p>Before anything is made, a GDC-registered dentist checks your case and approves the build. It's the step mail-order brands skip.</p>
+    </div>
+    <div class="m-row reveal">
+      <span class="m-num">Four</span>
+      <h3>Made in the UK, posted to you</h3>
+      <p>Your plate is fabricated in a UK dental lab and arrives within 10–14 days. Wear it. Unclench.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERTS ============ -->
+<section class="experts">
+  <div class="experts-inner">
+    <figure class="experts-media reveal">
+      <img src="assets/images/printer-fabrication.jpg" alt="An Unclench plate being fabricated on a dental 3D printer in a UK lab">
+      <figcaption>Fabrication · UK dental lab</figcaption>
+    </figure>
+    <div class="experts-copy reveal">
+      <span class="eyebrow">The people behind it</span>
+      <h2>Designed by dental experts. Not a warehouse.</h2>
+      <p>Unclench was built by practising dentists with decades of clinical experience in tooth wear and aesthetic dentistry — including <strong>Dr. Linda Greenwall</strong>, an internationally recognised authority in the field.</p>
+      <blockquote class="experts-quote">"We've spent our careers on worn teeth and tension. This is that expertise, made accessible."</blockquote>
+      <a href="about.html" class="experts-link">Read our story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ASSESSMENT — the one quiet mention ============ -->
+<section class="assess">
+  <div class="assess-inner reveal">
+    <span class="eyebrow">Optional · free · three minutes</span>
+    <h2>Not sure which plate you need?</h2>
+    <p>The assessment reads your symptoms and recommends the right build — or tells you honestly if you should see a clinician instead. No obligation, nothing to pay.</p>
+    <a href="consultation.html" class="btn btn-outline btn-lg">Take the assessment</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-mark">unclench<span class="dot">.</span></div>
+        <p>The tension brand, run by dentists. Custom bite plates and a real clinical pathway for clenching, grinding and jaw tension.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <a href="product-night-plate.html">Night Plate</a>
+        <a href="product-day-plate.html">Day Plate</a>
+        <a href="product-reset-kit.html">Reset Kit</a>
+        <a href="store.html">All products</a>
+      </div>
+      <div class="footer-col">
+        <h5>Learn</h5>
+        <a href="learn-jaw-clenching.html">Jaw clenching</a>
+        <a href="learn-teeth-grinding.html">Teeth grinding</a>
+        <a href="learn-tension-headaches.html">Tension headaches</a>
+        <a href="learn.html">All guides</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="about.html">Our story</a>
+        <a href="consultation.html">Assessment</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
       </div>
     </div>
-
-    <!-- Q3 severity -->
-    <div class="step" data-step="2">
-      <div class="q-eyebrow">Severity · Question 3 of 6</div>
-      <h2 class="q-title">How often does it affect you?</h2>
-      <div class="options">
-        <div class="opt" data-val="mild" data-score="0"><div class="check"></div><div class="opt-body"><div class="opt-label">Occasionally — a bad week now and then</div></div></div>
-        <div class="opt" data-val="moderate" data-score="2"><div class="check"></div><div class="opt-body"><div class="opt-label">Most weeks</div></div></div>
-        <div class="opt" data-val="severe" data-score="4"><div class="check"></div><div class="opt-body"><div class="opt-label">Almost every day</div></div></div>
-      </div>
+    <div class="footer-bottom">
+      <span>© 2026 Unclench</span>
+      <span>Made in the UK · Dentist-reviewed</span>
     </div>
-
-    <!-- Q4 dental work -->
-    <div class="step" data-step="3">
-      <div class="q-eyebrow">Your teeth · Question 4 of 6</div>
-      <h2 class="q-title">Any significant dental work?</h2>
-      <p class="q-help">Crowns, veneers, implants or bonding change which material we'd recommend.</p>
-      <div class="options">
-        <div class="opt" data-val="none" data-score="0"><div class="check"></div><div class="opt-body"><div class="opt-label">No, mostly natural teeth</div></div></div>
-        <div class="opt" data-val="some" data-score="1"><div class="check"></div><div class="opt-body"><div class="opt-label">Some — a few crowns or fillings</div></div></div>
-        <div class="opt" data-val="lots" data-score="2"><div class="check"></div><div class="opt-body"><div class="opt-label">Extensive — veneers, implants or major restoration</div></div></div>
-      </div>
-    </div>
-
-    <!-- Q5 RED FLAGS (multi) -->
-    <div class="step" data-step="4" data-multi="true">
-      <div class="q-eyebrow">Safety check · Question 5 of 6</div>
-      <h2 class="q-title">Do any of these apply?</h2>
-      <p class="q-help">Be honest here — some symptoms mean you should see a clinician before using any device. Select any that apply, or "none."</p>
-      <div class="options">
-        <div class="opt multi" data-val="lock" data-flag="1"><div class="check"></div><div class="opt-body"><div class="opt-label">My jaw locks, or clicks with pain</div></div></div>
-        <div class="opt multi" data-val="headache-bad" data-flag="1"><div class="check"></div><div class="opt-body"><div class="opt-label">New, severe or worsening headaches</div></div></div>
-        <div class="opt multi" data-val="apnoea" data-flag="1"><div class="check"></div><div class="opt-body"><div class="opt-label">I snore heavily or have been told I stop breathing in my sleep</div></div></div>
-        <div class="opt multi" data-val="trauma" data-flag="1"><div class="check"></div><div class="opt-body"><div class="opt-label">Recent injury or trauma to my face or jaw</div></div></div>
-        <div class="opt multi" data-val="none" data-flag="0" data-clears="true"><div class="check"></div><div class="opt-body"><div class="opt-label">None of these</div></div></div>
-      </div>
-    </div>
-
-    <!-- Q6 aesthetics interest (gates botox) -->
-    <div class="step" data-step="5">
-      <div class="q-eyebrow">One last thing · Question 6 of 6</div>
-      <h2 class="q-title">A stronger, slimmer jawline — of interest?</h2>
-      <p class="q-help">For heavier clenchers, muscle-level treatment can relieve tension and slim the jaw. We only mention it where it's clinically appropriate.</p>
-      <div class="options">
-        <div class="opt" data-val="yes"><div class="check"></div><div class="opt-body"><div class="opt-label">Yes, tell me more</div></div></div>
-        <div class="opt" data-val="maybe"><div class="check"></div><div class="opt-body"><div class="opt-label">Maybe later</div></div></div>
-        <div class="opt" data-val="no"><div class="check"></div><div class="opt-body"><div class="opt-label">Just the plate, thanks</div></div></div>
-      </div>
-    </div>
-
-    <div class="q-nav">
-      <button type="button" class="q-back" id="backBtn" style="visibility:hidden">← Back</button>
-      <button type="button" class="btn btn-coral" id="nextBtn" disabled>Continue →</button>
-    </div>
-  </form>
-
-  <!-- ===== RESULT ===== -->
-  <div class="result" id="result"></div>
-</div>
+    <p class="footer-legal">Unclench appliances are custom-made dental devices and not a substitute for a full clinical examination. If you have jaw locking, persistent unexplained pain, or signs of a sleep disorder, our assessment will route you to appropriate clinical care.</p>
+  </div>
+</footer>
 
 <script src="assets/store.js"></script>
 <script>
-/* ---------------- consultation engine ---------------- */
-const steps = Array.from(document.querySelectorAll('.step'));
-const bar = document.getElementById('bar');
-const nextBtn = document.getElementById('nextBtn');
-const backBtn = document.getElementById('backBtn');
-let idx = 0;
-const answers = {}; // step -> value or array
-
-function setProgress(){ bar.style.width = ((idx)/(steps.length))*100 + '%'; }
-function isMulti(step){ return step.dataset.multi === 'true'; }
-
-function refreshNextState(){
-  const step = steps[idx];
-  const chosen = step.querySelectorAll('.opt.selected').length;
-  nextBtn.disabled = chosen === 0;
-}
-
-steps.forEach((step)=>{
-  step.querySelectorAll('.opt').forEach(opt=>{
-    opt.addEventListener('click', ()=>{
-      if(isMulti(step)){
-        // "none / clears" handling
-        if(opt.dataset.clears){
-          step.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
-          opt.classList.add('selected');
-        } else {
-          step.querySelector('.opt[data-clears]')?.classList.remove('selected');
-          opt.classList.toggle('selected');
-        }
-      } else {
-        step.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
-        opt.classList.add('selected');
-      }
-      refreshNextState();
-    });
-  });
-});
-
-nextBtn.addEventListener('click', ()=>{
-  const step = steps[idx];
-  // record answer
-  if(isMulti(step)){
-    answers[idx] = Array.from(step.querySelectorAll('.opt.selected')).map(o=>o.dataset.val);
-  } else {
-    const sel = step.querySelector('.opt.selected');
-    answers[idx] = sel.dataset.val;
-  }
-  if(idx < steps.length - 1){
-    steps[idx].classList.remove('active');
-    idx++;
-    steps[idx].classList.add('active');
-    backBtn.style.visibility = 'visible';
-    setProgress();
-    refreshNextState();
-    nextBtn.textContent = idx === steps.length -1 ? 'See my result →' : 'Continue →';
-    window.scrollTo({top:0,behavior:'smooth'});
-  } else {
-    showResult();
-  }
-});
-
-backBtn.addEventListener('click', ()=>{
-  if(idx === 0) return;
-  steps[idx].classList.remove('active');
-  idx--;
-  steps[idx].classList.add('active');
-  if(idx === 0) backBtn.style.visibility = 'hidden';
-  setProgress();
-  refreshNextState();
-  nextBtn.textContent = 'Continue →';
-});
-
-/* ---------------- scoring & routing ---------------- */
-function scoreOf(stepIdx, val){
-  const opt = steps[stepIdx].querySelector(`.opt[data-val="${val}"]`);
-  return opt ? parseInt(opt.dataset.score||0,10) : 0;
-}
-
-function showResult(){
-  // gather
-  const symptoms = answers[0]||[];
-  const timing = answers[1];
-  const freq = answers[2];
-  const dental = answers[3];
-  const flags = (answers[4]||[]).filter(v=>v!=='none');
-  const aesthetics = answers[5];
-
-  // severity score
-  let sev = scoreOf(1,timing) + scoreOf(2,freq) + scoreOf(3,dental);
-  if(symptoms.includes('wear')) sev += 1;
-  if(symptoms.includes('grind')) sev += 1;
-
-  const hasFlags = flags.length > 0;
-
-  // ---- ROUTE ----
-  let path, profile, summary, products=[], note='', aestheticsBlock='';
-
-  if(hasFlags){
-    path='clinical';
-    profile='We recommend a clinical assessment first';
-    summary="Some of what you told us needs a proper look before any device is fitted. That's not a setback — it's us doing this responsibly.";
-    const flagText = {
-      lock:"jaw locking or painful clicking",
-      'headache-bad':"new or worsening headaches",
-      apnoea:"possible signs of a sleep-breathing issue",
-      trauma:"recent injury to the jaw"
-    };
-    note = `<strong>Why we're routing you here:</strong> you flagged ${flags.map(f=>flagText[f]).join(', ')}. A device could mask or worsen these. A dentist should assess you first — and if it's a sleep-breathing issue, a different appliance entirely may be right.`;
-    document.getElementById('result').innerHTML = resultHTML(path,profile,summary,'',note,`
-      <a href="about.html" class="btn btn-coral btn-lg btn-full">Book a clinical assessment →</a>
-      <a href="store.html" class="btn btn-ink btn-full">Browse products anyway</a>`);
-  } else {
-    // device selection
-    const isDay = timing === 'day';
-    const build = sev >= 5 ? 'Hard' : 'Soft';
-
-    if(isDay){
-      products.push(prod('day','day-plate','The Day Plate','£139',`Ultra-thin daytime guard. Comes with the free habit-retraining programme — the best-evidenced fix for awake clenching.`));
-    } else {
-      const plateId = build === 'Hard' ? 'night-plate-hard' : 'night-plate-soft';
-      const platePrice = build === 'Hard' ? '£169' : '£119';
-      products.push(prod('night',plateId,'The Night Plate — '+build+' build',platePrice,`A ${build.toLowerCase()} guard, matched to your grinding force. ${build==='Hard'?'Clinical-grade and most durable — the right call for heavy grinders.':'Comfort-first and dentist-reviewed.'}`));
-    }
-
-    if(sev >= 3){
-      products.push(prod('kit','unwind','Unwind','£24 / mo',`Magnesium glycinate + L-theanine to calm the muscles that won't switch off at night.`));
-      path='enhanced';
-      profile = (isDay?'Awake clencher':'Nocturnal clencher') + ' · '+ (sev>=6?'significant':'moderate');
-      summary = `You're clenching ${isDay?'through the day':'in your sleep'}, ${sev>=6?'and it\'s taking a real toll':'often enough to matter'}. Here's the plan we'd put in front of you.`;
-      note = `<strong>Every plate is reviewed by a GDC-registered dentist</strong> before fabrication, and made in a UK dental lab from your impressions or scan.`;
-
-      if(aesthetics !== 'no' && sev >= 4){
-        aestheticsBlock = `<div class="rc-note" style="background:#312c5c;color:var(--bone)">
-          <strong style="color:var(--coral)">You may be a candidate for muscle-level treatment.</strong><br>
-          Because you're a heavier clencher, relaxing the jaw muscle itself can ease tension at the source — and slims the jawline as a side effect. Available through our clinics in Jersey, Guernsey and London. We'll include details with your order.</div>`;
-      }
-    } else {
-      path='self';
-      profile = (isDay?'Occasional awake clencher':'Light nocturnal clencher');
-      summary = "Good news — this looks straightforward. A well-made custom plate should sort you out.";
-      note = `<strong>Every plate is reviewed by a GDC-registered dentist</strong> before it's made. Add the free habit programme and you've got a complete plan.`;
-    }
-
-    const prodHTML = products.map(p=>p.html).join('');
-    const actions = `
-      ${products.map(p=>`<button class="btn btn-coral btn-lg btn-full" onclick="cartAdd('${p.id}')">Add ${p.name.split('—')[0].trim()} to cart · ${p.price}</button>`).join('')}
-      <a href="store.html" class="btn btn-ink btn-full">See everything</a>`;
-    document.getElementById('result').innerHTML = resultHTML(path,profile,summary,prodHTML+aestheticsBlock,note,actions);
-  }
-
-  // reveal
-  document.getElementById('quiz').style.display='none';
-  bar.style.width='100%';
-  const r = document.getElementById('result');
-  r.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function prod(cls,id,name,price,desc){
-  return {
-    id, name, price,
-    html:`<div class="rc-prod">
-      <div class="rc-prod-thumb ${cls}">${name.includes('Day')?'DAY':name.includes('Night')?'NIGHT':name.toUpperCase().slice(0,6)}</div>
-      <div class="rc-prod-info"><h4>${name}</h4><p>${desc}</p></div>
-      <div class="rc-prod-price">${price}</div>
-    </div>`
-  };
-}
-
-function resultHTML(path,profile,summary,prods,note,actions){
-  return `<div class="result-card">
-    <div class="rc-top ${path}">
-      <div class="rc-profile-label">Your tension profile</div>
-      <div class="rc-profile">${profile}</div>
-      <p class="rc-summary">${summary}</p>
-    </div>
-    <div class="rc-body">
-      ${prods?`<div class="rc-rec-label">What we recommend</div>${prods}`:''}
-      ${note?`<div class="rc-note">${note}</div>`:''}
-      <div class="rc-actions">${actions}</div>
-    </div>
-  </div>`;
-}
-
-setProgress();
+  (function(){
+    const w = document.getElementById('heroWord');
+    if(!w || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const spans = w.querySelectorAll('span');
+    spans.forEach(s=>s.style.letterSpacing='-9px');
+    setTimeout(()=>spans.forEach(s=>s.style.letterSpacing='0px'),350);
+  })();
 </script>
 </body>
 </html>
