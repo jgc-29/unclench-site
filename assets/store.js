@@ -20,9 +20,14 @@ const CATALOGUE = {
     thumb:"SOFT", thumbClass:""
   },
   "night-plate-hard": {
-    id:"night-plate-hard", name:"The Night Plate — Hard", price:169, priceId:null,
+    id:"night-plate-hard", name:"The Night Plate — Hard", price:199, priceId:null,
     blurb:"Clinical-grade hard build for heavy grinders and restored teeth.",
     thumb:"HARD", thumbClass:""
+  },
+  "night-plate-hard-fitted": {
+    id:"night-plate-hard-fitted", name:"Night Plate — Hard, Fitted In-Clinic", price:294, priceId:null,
+    blurb:"The Hard build, fitted personally by one of our dentists in Jersey, Guernsey or London.",
+    thumb:"FITTED", thumbClass:"coral"
   },
   "day-plate": {
     id:"day-plate", name:"The Day Plate", price:139, priceId:null,
