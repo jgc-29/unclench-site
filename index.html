@@ -16,7 +16,9 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Un-clench","url":"https://un-clench.com","description":"The tension brand, run by dentists. Custom bite plates and a clinical pathway for jaw clenching, grinding and tension headaches.","areaServed":"GB"}
 </script>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="assets/brand.css">
+<style>.announce{background:var(--coral);color:#fff;text-align:center;font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:11px 16px}</style>
 <style>
 .faqband{background:var(--bone);padding:130px 40px}
 .faqband-inner{max-width:820px;margin:0 auto}
@@ -179,9 +181,46 @@
 @media(max-width:960px){.usp-grid{grid-template-columns:1fr 1fr}.ctable th,.ctable td{padding:14px 8px;font-size:12.5px}}
 @media(max-width:560px){.usp-grid{grid-template-columns:1fr}}
 </style>
+<style>
+.trustband{background:var(--bone-2);padding:64px 40px}
+.trust-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.t-item{text-align:center}
+.t-item .t-glyph{font-family:'Newsreader',serif;font-style:italic;font-size:26px;color:var(--coral-deep);margin-bottom:12px}
+.t-item h4{font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.02em;color:var(--ink);margin-bottom:6px}
+.t-item p{font-size:12.5px;color:var(--slate);line-height:1.55}
+.journal{background:var(--bone);padding:130px 40px}
+.journal-inner{max-width:1240px;margin:0 auto}
+.journal-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:24px;flex-wrap:wrap}
+.journal-head h2{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,44px);letter-spacing:-0.03em;color:var(--ink)}
+.journal-head a{font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid var(--line);padding-bottom:3px;transition:all .2s}
+.journal-head a:hover{color:var(--coral-deep);border-color:var(--coral)}
+.journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.jcard{display:block}
+.jcard-media{overflow:hidden;aspect-ratio:16/10;margin-bottom:18px}
+.jcard-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.jcard:hover .jcard-media img{transform:scale(1.045)}
+.jcard .j-kind{font-family:'Archivo',sans-serif;font-weight:600;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--coral-deep)}
+.jcard h3{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.015em;color:var(--ink);margin:10px 0 8px;line-height:1.15}
+.jcard p{font-size:14px;color:var(--slate);line-height:1.6}
+.jcard .j-review{margin-top:12px;font-size:11.5px;color:var(--paper-dim);font-family:'Archivo',sans-serif}
+.capture{background:var(--clench);color:var(--bone);padding:110px 40px}
+.capture-inner{max-width:720px;margin:0 auto;text-align:center}
+.capture .eyebrow{display:block;margin-bottom:20px}
+.capture h2{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,40px);letter-spacing:-0.025em;margin-bottom:16px}
+.capture p{font-size:15.5px;color:rgba(240,235,226,0.7);line-height:1.65;max-width:480px;margin:0 auto 36px}
+.capture-form{display:flex;gap:0;max-width:460px;margin:0 auto}
+.capture-form input{flex:1;padding:17px 20px;border:1px solid var(--line-dark);background:var(--clench-2);color:var(--bone);font-family:'Inter',sans-serif;font-size:14px}
+.capture-form input::placeholder{color:rgba(240,235,226,0.4)}
+.capture-form input:focus{outline:none;border-color:var(--coral)}
+.capture-form button{background:var(--coral);color:#fff;border:none;padding:17px 28px;font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.capture-form button:hover{background:var(--coral-deep)}
+.capture-note{margin-top:16px;font-size:11.5px;color:rgba(240,235,226,0.35)}
+@media(max-width:960px){.trust-inner{grid-template-columns:1fr 1fr}.journal-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
+<div class="announce">Free UK shipping · Dentist-reviewed, every order · Fit guarantee</div>
 <nav class="nav on-dark">
   <div class="nav-inner">
     <a href="index.html" class="brand-mark">un-clench<span class="dot">.</span></a>
@@ -305,6 +344,17 @@
   </div>
 </section>
 
+
+<!-- ============ TRUST BAND ============ -->
+<section class="trustband">
+  <div class="trust-inner">
+    <div class="t-item reveal"><div class="t-glyph">✓</div><h4>Fit guarantee</h4><p>If your plate doesn't fit, we remake it free. No quibbles.</p></div>
+    <div class="t-item reveal"><div class="t-glyph">Dr</div><h4>Dentist-reviewed</h4><p>A GDC-registered dentist approves every case before it's made.</p></div>
+    <div class="t-item reveal"><div class="t-glyph">UK</div><h4>Made in Britain</h4><p>Fabricated in a UK dental lab, posted within 10–14 days.</p></div>
+    <div class="t-item reveal"><div class="t-glyph">£</div><h4>Secure checkout</h4><p>Payments handled by Stripe. Cancel subscriptions anytime.</p></div>
+  </div>
+</section>
+
 <!-- ============ DIPTYCH ============ -->
 <section class="diptych" aria-label="The tension and the release">
   <div class="dip t">
@@ -408,6 +458,40 @@
 </section>
 
 
+
+<!-- ============ JOURNAL ============ -->
+<section class="journal">
+  <div class="journal-inner">
+    <div class="journal-head reveal">
+      <h2>From the journal.</h2>
+      <a href="learn.html">All guides</a>
+    </div>
+    <div class="journal-grid">
+      <a href="learn-jaw-clenching.html" class="jcard reveal">
+        <div class="jcard-media"><img src="assets/images/tension-desk.jpg" alt="A man clenching his jaw at his desk" loading="lazy"></div>
+        <span class="j-kind">Guide</span>
+        <h3>Why do I clench my jaw — and how do I stop?</h3>
+        <p>The hidden desk habit, what drives it, and the retraining that actually works.</p>
+        <div class="j-review">Medically reviewed · Updated July 2026</div>
+      </a>
+      <a href="learn-tension-headaches.html" class="jcard reveal">
+        <div class="jcard-media"><img src="assets/images/headache-morning.jpg" alt="A woman waking with a tension headache at her temples" loading="lazy"></div>
+        <span class="j-kind">Guide</span>
+        <h3>The headache that starts in your jaw</h3>
+        <p>Morning temple pain and the afternoon band: how clenching drives tension headaches.</p>
+        <div class="j-review">Medically reviewed · Updated July 2026</div>
+      </a>
+      <a href="learn-teeth-grinding.html" class="jcard reveal">
+        <div class="jcard-media"><img src="assets/images/night-ritual.jpg" alt="A night guard in its case on a bedside table" loading="lazy"></div>
+        <span class="j-kind">Guide</span>
+        <h3>Teeth grinding in your sleep: what to do</h3>
+        <p>The signs, the causes, and how to protect your teeth from nightly force.</p>
+        <div class="j-review">Medically reviewed · Updated July 2026</div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ COMPARE ============ -->
 <section class="compare">
   <div class="compare-inner">
@@ -444,6 +528,21 @@
     <h2>Not sure which plate you need?</h2>
     <p>The assessment reads your symptoms and recommends the right build — or tells you honestly if you should see a clinician instead. No obligation, nothing to pay.</p>
     <a href="consultation.html" class="btn btn-outline btn-lg">Take the assessment</a>
+  </div>
+</section>
+
+
+<!-- ============ EMAIL CAPTURE ============ -->
+<section class="capture">
+  <div class="capture-inner reveal">
+    <span class="eyebrow">Free · by email</span>
+    <h2>The 21-day unclench programme.</h2>
+    <p>Three weeks of daily jaw-check nudges and release techniques, straight to your inbox. The habit-retraining course we bundle with the Day Plate — free to start.</p>
+    <form class="capture-form" onsubmit="event.preventDefault();this.innerHTML='<p style=\'font-family:Archivo,sans-serif;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;font-size:13px;color:var(--coral)\'>You\'re in — check your inbox.</p>';">
+      <input type="email" placeholder="Your email" required>
+      <button type="submit">Start free</button>
+    </form>
+    <p class="capture-note">No spam, unsubscribe anytime. We'll also send occasional product news.</p>
   </div>
 </section>
 
