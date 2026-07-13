@@ -9,6 +9,11 @@
    priceId is where your Stripe Price ID goes once created.
    Leave as null and checkout falls back to demo mode.        */
 const CATALOGUE = {
+  "the-complete": {
+    id:"the-complete", name:"The Complete", price:299, priceId:null,
+    blurb:"Hard Night Plate + Day Plate + Unwind + Jaw Balm + Release Tool + the habit programme.",
+    thumb:"COMPLETE", thumbClass:"coral"
+  },
   "night-plate-soft": {
     id:"night-plate-soft", name:"The Night Plate — Soft", price:119, priceId:null,
     blurb:"Custom soft nightguard for light-to-moderate clenchers. Dentist-reviewed.",
@@ -19,40 +24,15 @@ const CATALOGUE = {
     blurb:"Clinical-grade hard build for heavy grinders and restored teeth.",
     thumb:"HARD", thumbClass:""
   },
-  "night-pair-soft": {
-    id:"night-pair-soft", name:"Night Plate Pair — Soft", price:189, priceId:null,
-    blurb:"Two soft guards. Upper, lower, or a spare.",
-    thumb:"SOFT ×2", thumbClass:""
-  },
-  "night-pair-hard": {
-    id:"night-pair-hard", name:"Night Plate Pair — Hard", price:269, priceId:null,
-    blurb:"Two clinical-grade hard guards.",
-    thumb:"HARD ×2", thumbClass:""
-  },
   "day-plate": {
     id:"day-plate", name:"The Day Plate", price:139, priceId:null,
     blurb:"Ultra-thin, invisible daytime guard. Habit programme included.",
     thumb:"DAY", thumbClass:"coral"
   },
-  "reset-kit": {
-    id:"reset-kit", name:"The Reset Kit", price:179, priceId:null,
-    blurb:"Soft plate + Unwind + jaw balm + release tool + programme.",
-    thumb:"RESET KIT", thumbClass:"coral"
-  },
   "unwind": {
-    id:"unwind", name:"Unwind", price:24, priceId:null, sub:true,
-    blurb:"Magnesium glycinate + L-theanine. Nightly.",
+    id:"unwind", name:"Unwind", price:24, priceId:null,
+    blurb:"Magnesium glycinate + L-theanine. One month's supply.",
     thumb:"UNWIND", thumbClass:"sage"
-  },
-  "refresh-soft": {
-    id:"refresh-soft", name:"Refresh — Soft", price:69, priceId:null, sub:true,
-    blurb:"Replacement soft plate every 6–12 months.",
-    thumb:"REFRESH", thumbClass:"sage"
-  },
-  "refresh-hard": {
-    id:"refresh-hard", name:"Refresh — Hard", price:99, priceId:null, sub:true,
-    blurb:"Replacement hard plate every 6–12 months.",
-    thumb:"REFRESH", thumbClass:"sage"
   },
   "jaw-balm": {
     id:"jaw-balm", name:"Jaw Balm", price:16, priceId:null,
@@ -64,10 +44,15 @@ const CATALOGUE = {
     blurb:"Trigger-point tool shaped for the jaw, with video protocols.",
     thumb:"TOOL", thumbClass:"sage"
   },
-  "tension-duo": {
-    id:"tension-duo", name:"The Tension Duo", price:34, priceId:null,
-    blurb:"Jaw balm + release tool, together. Save £4.",
-    thumb:"DUO", thumbClass:"coral"
+  "day-plate-sub": {
+    id:"day-plate-sub", name:"Day Plate Subscription", price:79, priceId:null, sub:true,
+    blurb:"A fresh Day Plate every 6 months. Scan on file.",
+    thumb:"DAY SUB", thumbClass:"coral"
+  },
+  "hard-plate-sub": {
+    id:"hard-plate-sub", name:"Hard Plate Subscription", price:99, priceId:null, sub:true,
+    blurb:"A fresh clinical-grade Hard plate every 6 months.",
+    thumb:"HARD SUB", thumbClass:""
   }
 };
 
