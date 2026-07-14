@@ -129,6 +129,7 @@
 
       <div class="pdp-add">
         <button class="btn btn-coral btn-lg btn-full" id="addBtn">Add to cart · <span id="addPrice">£199</span></button>
+        <button class="btn btn-outline btn-lg btn-full" id="buyBtn" style="margin-top:10px">Buy now →</button>
       </div>
 
       <div style="text-align:center;margin-bottom:22px"><a href="consultation.html" style="font-size:14px;color:var(--paper-dim);text-decoration:underline">Not sure which build? Take the assessment</a></div>
@@ -186,6 +187,10 @@
   });
   document.getElementById('addBtn').addEventListener('click', ()=>{
     cartAdd(sel.id, sel.variant);
+  });
+  document.getElementById('buyBtn').addEventListener('click', ()=>{
+    var link = CATALOGUE[sel.id] && CATALOGUE[sel.id].priceId;
+    if(link){ window.location = link; } else { cartAdd(sel.id, sel.variant); }
   });
 </script>
 <script>document.querySelectorAll('.fq').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('open')));</script>

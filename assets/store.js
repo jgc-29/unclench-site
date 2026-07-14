@@ -10,52 +10,52 @@
    Leave as null and checkout falls back to demo mode.        */
 const CATALOGUE = {
   "the-complete": {
-    id:"the-complete", name:"The Complete", price:299, priceId:null,
-    blurb:"Hard Night Plate + Day Plate + Unwind + Jaw Balm + Release Tool + the habit programme.",
+    id:"the-complete", name:"The Complete", price:299, priceId:"https://buy.stripe.com/eVq14mdnA8DmeB3fo0frW08",
+    blurb:"Hard Night Plate + Day Plate + Night Restore + Jaw Balm + Release Tool + the habit programme.",
     thumb:"COMPLETE", thumbClass:"coral"
   },
   "night-plate-soft": {
-    id:"night-plate-soft", name:"The Night Plate — Soft", price:119, priceId:null,
+    id:"night-plate-soft", name:"The Night Plate — Soft", price:119, priceId:"https://buy.stripe.com/aFa4gybfs06Q64x2BefrW0b",
     blurb:"Custom soft nightguard for light-to-moderate clenchers. Dentist-reviewed.",
     thumb:"SOFT", thumbClass:""
   },
   "night-plate-hard": {
-    id:"night-plate-hard", name:"The Night Plate — Hard", price:199, priceId:null,
+    id:"night-plate-hard", name:"The Night Plate — Hard", price:199, priceId:"https://buy.stripe.com/fZu4gy2IW3j20Kd1xafrW09",
     blurb:"Clinical-grade hard build for heavy grinders and restored teeth.",
     thumb:"HARD", thumbClass:""
   },
   "night-plate-hard-fitted": {
-    id:"night-plate-hard-fitted", name:"Night Plate — Hard, Fitted In-Clinic", price:294, priceId:null,
+    id:"night-plate-hard-fitted", name:"Night Plate — Hard, Fitted In-Clinic", price:294, priceId:"https://buy.stripe.com/3cI3cubfs1aUgJb6RufrW0a",
     blurb:"The Hard build, fitted personally by one of our dentists in Jersey, Guernsey or London.",
     thumb:"FITTED", thumbClass:"coral"
   },
   "day-plate": {
-    id:"day-plate", name:"The Day Plate", price:139, priceId:null,
+    id:"day-plate", name:"The Day Plate", price:139, priceId:"https://buy.stripe.com/00w7sK4R4f1KdwZ1xafrW0c",
     blurb:"Ultra-thin, invisible daytime guard. Habit programme included.",
     thumb:"DAY", thumbClass:"coral"
   },
-  "unwind": {
-    id:"unwind", name:"Unwind", price:24, priceId:null,
-    blurb:"Magnesium glycinate + L-theanine. One month's supply.",
-    thumb:"UNWIND", thumbClass:"sage"
+  "night-restore": {
+    id:"night-restore", name:"Night Restore", price:24, priceId:"https://buy.stripe.com/5kQ14m97k4n664xb7KfrW0d",
+    blurb:"Nightly magnesium glycinate + L-theanine drops. One month's supply.",
+    thumb:"NIGHT RESTORE", thumbClass:"sage"
   },
   "jaw-balm": {
-    id:"jaw-balm", name:"Jaw Balm", price:16, priceId:null,
+    id:"jaw-balm", name:"Jaw Balm", price:16, priceId:"https://buy.stripe.com/bJe4gy5V8cTC1Oh1xafrW0e",
     blurb:"Warming magnesium & arnica for masseter and temples.",
     thumb:"BALM", thumbClass:"coral"
   },
   "release-tool": {
-    id:"release-tool", name:"The Release Tool", price:22, priceId:null,
+    id:"release-tool", name:"The Release Tool", price:22, priceId:"https://buy.stripe.com/bJe6oG97k7zi8cFejWfrW0f",
     blurb:"Trigger-point tool shaped for the jaw, with video protocols.",
     thumb:"TOOL", thumbClass:"sage"
   },
   "day-plate-sub": {
-    id:"day-plate-sub", name:"Day Plate Subscription", price:79, priceId:null, sub:true,
+    id:"day-plate-sub", name:"Day Plate Subscription", price:79, priceId:"https://buy.stripe.com/7sY28q5V8f1K9gJb7KfrW0g", sub:true,
     blurb:"A fresh Day Plate every 6 months. Scan on file.",
     thumb:"DAY SUB", thumbClass:"coral"
   },
   "hard-plate-sub": {
-    id:"hard-plate-sub", name:"Hard Plate Subscription", price:99, priceId:null, sub:true,
+    id:"hard-plate-sub", name:"Hard Plate Subscription", price:99, priceId:"https://buy.stripe.com/cNi9AS6Zc4n6fF72BefrW0h", sub:true,
     blurb:"A fresh clinical-grade Hard plate every 6 months.",
     thumb:"HARD SUB", thumbClass:""
   }
@@ -143,21 +143,35 @@ function renderCart(){
    In production this posts the cart to your server, which creates
    a Stripe Checkout Session and returns a URL to redirect to.
    Until that backend exists, we route to the local checkout page. */
-async function checkout(){
+function checkout(){
   if(CART.length === 0) return;
 
-  // ---- PRODUCTION PATH (uncomment once your backend is live) ----
-  // const res = await fetch('/api/create-checkout-session', {
-  //   method:'POST', headers:{'Content-Type':'application/json'},
-  //   body: JSON.stringify({ items: CART.map(l=>({ id:l.id, variant:l.variant, qty:l.qty })) })
-  // });
-  // const { url } = await res.json();
-  // window.location = url;   // Stripe-hosted checkout
-  // return;
+  // Stripe Payment Links are one product per link. If every line in the cart
+  // is the same single product, go straight to its link. Otherwise, send the
+  // customer to the highest-value item's link and note the extras (interim
+  // approach until a multi-item Checkout Session backend is added).
+  const linked = CART.filter(l => CATALOGUE[l.id] && CATALOGUE[l.id].priceId);
+  const unlinked = CART.filter(l => !(CATALOGUE[l.id] && CATALOGUE[l.id].priceId));
 
-  // ---- DEMO PATH ----
-  const payload = encodeURIComponent(JSON.stringify(CART));
-  window.location = 'checkout.html?cart=' + payload;
+  // Single distinct product, and it has a link -> direct to Stripe
+  if(CART.length === 1 && linked.length === 1){
+    window.location = CATALOGUE[CART[0].id].priceId;
+    return;
+  }
+
+  // Multiple items: if the highest-value line has a link, use it and warn.
+  if(linked.length > 0){
+    const top = linked.slice().sort((a,b)=>CATALOGUE[b.id].price - CATALOGUE[a.id].price)[0];
+    const others = CART.filter(l => l.key !== top.key);
+    let msg = "Right now each product checks out individually. We'll take you to checkout for " + CATALOGUE[top.id].name + ".";
+    if(others.length) msg += " Please check out your other item(s) separately afterwards: " + others.map(l=>CATALOGUE[l.id].name).join(", ") + ".";
+    alert(msg);
+    window.location = CATALOGUE[top.id].priceId;
+    return;
+  }
+
+  // Nothing in cart has a link yet
+  alert("Checkout for these item(s) is being set up. Please check back shortly.");
 }
 
 /* ---- INJECT SHARED CART DRAWER + FOOTER on every page ---- */
