@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /checkout.html
+Disallow: /checkout/
+Disallow: /thank-you/
 Sitemap: https://un-clench.com/sitemap.xml
