@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18327961971"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18327961971');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Custom Night Guard UK — for Teeth Grinding & Clenching | Un-clench</title>
@@ -16,7 +24,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"The Night Plate","description":"Custom night guard for teeth grinding and jaw clenching. Soft or clinical-grade Hard build, dentist-reviewed, made in the UK.","brand":{"@type":"Brand","name":"Un-clench"},"offers":[{"@type":"Offer","name":"Soft build","price":"119","priceCurrency":"GBP","availability":"https://schema.org/InStock"},{"@type":"Offer","name":"Hard build","price":"199","priceCurrency":"GBP","availability":"https://schema.org/InStock"},{"@type":"Offer","name":"Hard build, fitted in-clinic","price":"294","priceCurrency":"GBP","availability":"https://schema.org/InStock"}]}
 </script>
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/brand.css">
 <style>.announce{background:var(--coral);color:#fff;text-align:center;font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:11px 16px}</style>
 <style>
@@ -190,7 +201,8 @@
   });
   document.getElementById('buyBtn').addEventListener('click', ()=>{
     var link = CATALOGUE[sel.id] && CATALOGUE[sel.id].priceId;
-    if(link){ window.location = link; } else { cartAdd(sel.id, sel.variant); }
+    track('begin_checkout', {currency:'GBP', value:(CATALOGUE[sel.id]||{}).price, items:[itemOf(sel.id, sel.variant, 1)]});
+    if(link){ setTimeout(function(){window.location = link;},150); } else { cartAdd(sel.id, sel.variant); }
   });
 </script>
 <script>document.querySelectorAll('.fq').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('open')));</script>

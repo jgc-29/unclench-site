@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18327961971"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18327961971');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Custom Bite Plates for Jaw Clenching & Teeth Grinding | Un-clench</title>
@@ -16,7 +24,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Un-clench","url":"https://un-clench.com","description":"The tension brand, run by dentists. Custom bite plates and a clinical pathway for jaw clenching, grinding and tension headaches.","areaServed":"GB"}
 </script>
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/brand.css">
 <style>.announce{background:var(--coral);color:#fff;text-align:center;font-family:'Archivo',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:11px 16px}</style>
 <style>
@@ -541,7 +552,7 @@
     <span class="eyebrow">Free · by email</span>
     <h2>The 21-day unclench programme.</h2>
     <p>Three weeks of daily jaw-check nudges and release techniques, straight to your inbox. The habit-retraining course we bundle with the Day Plate — free to start.</p>
-    <form class="capture-form" onsubmit="event.preventDefault();this.innerHTML='<p style=\'font-family:Archivo,sans-serif;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;font-size:13px;color:var(--coral)\'>You\'re in — check your inbox.</p>';">
+    <form class="capture-form" onsubmit="event.preventDefault();if(typeof track===&quot;function&quot;){track(&quot;email_signup&quot;,{source:&quot;homepage_21day&quot;});}this.innerHTML='<p style=\'font-family:Archivo,sans-serif;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;font-size:13px;color:var(--coral)\'>You\'re in — check your inbox.</p>';">
       <input type="email" placeholder="Your email" required>
       <button type="submit">Start free</button>
     </form>

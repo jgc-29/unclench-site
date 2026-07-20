@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18327961971"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18327961971');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thank you — Your order is confirmed | Un-clench</title>
 <meta name="description" content="Your un-clench order is confirmed. Here's what happens next.">
 <meta name="robots" content="noindex">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/brand.css">
 
 <!-- =================================================================
@@ -15,14 +26,7 @@
      page fires a purchase/conversion event the moment it loads.
      ================================================================= -->
 
-<!-- Google Analytics 4 (replace G-XXXXXXXXXX) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
+
 
 <style>
   body{background:var(--clench);color:var(--bone)}
@@ -76,5 +80,14 @@
       <a href="/" class="btn btn-ghost btn-lg">Back to home</a>
     </div>
   </div>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // Purchase confirmation reached — fire conversion event.
+  // NOTE: order value isn't passed by Stripe Payment Links; add the
+  // Google Ads conversion event snippet here for value-based bidding.
+  gtag('event','purchase',{transaction_id:'', currency:'GBP'});
+  window.track_purchase_done = true;
+</script>
 </body>
 </html>

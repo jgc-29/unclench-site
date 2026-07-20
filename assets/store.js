@@ -61,12 +61,55 @@ const CATALOGUE = {
   }
 };
 
+
+/* ============================================================
+   EVENT TRACKING — journey analytics
+   Fires standard ecommerce + engagement events through gtag /
+   dataLayer, so they flow to Google Ads and GA4 (once added).
+   Every event is also console-logged in a readable form so you
+   can watch journeys live in the browser dev console.
+   ============================================================ */
+function track(eventName, params){
+  params = params || {};
+  try {
+    if (typeof gtag === 'function') { gtag('event', eventName, params); }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({event: eventName}, params));
+  } catch(e){}
+  // readable trace for live journey-watching
+  console.log('%c[journey] ' + eventName, 'color:#FF6B5C;font-weight:bold', params);
+}
+
+// Fire a page_view with a friendly page name on every load
+function trackPageView(){
+  var path = location.pathname.replace(/\/index\.html$/,'/');
+  var name = ({
+    '/':'home','/store/':'shop','/consultation/':'assessment','/checkout/':'checkout',
+    '/thank-you/':'purchase_confirmation','/about/':'about','/learn/':'learn_hub',
+    '/product-night-plate/':'product_night_plate','/product-day-plate/':'product_day_plate',
+    '/product-reset-kit/':'product_complete','/product-jaw-balm/':'product_jaw_balm',
+    '/product-night-restore/':'product_night_restore','/product-release-tool/':'product_release_tool'
+  })[path] || (path.indexOf('/learn-')===0 ? 'article' : path);
+  track('page_view', {page_path: path, page_name: name});
+  // product_view when on a product page
+  if (name.indexOf('product_') === 0) {
+    track('view_item', {page_name: name});
+  }
+}
+
+// item helper for ecommerce events
+function itemOf(id, variant, qty){
+  var p = CATALOGUE[id] || {};
+  return {item_id:id, item_name:p.name||id, item_variant:variant||'', price:p.price||0, quantity:qty||1, currency:'GBP'};
+}
+
 /* ---- CART STATE ---- */
 let CART = [];
 
 function cartAdd(id, variant){
   const p = CATALOGUE[id];
   if(!p) return;
+  track('add_to_cart', {currency:'GBP', value:p.price, items:[itemOf(id, variant, 1)]});
   const key = id + (variant ? "::"+variant : "");
   const existing = CART.find(l => l.key === key);
   if(existing){ existing.qty += 1; }
@@ -75,7 +118,7 @@ function cartAdd(id, variant){
   openCart();
   pulseCartCount();
 }
-function cartRemove(key){ CART = CART.filter(l => l.key !== key); renderCart(); }
+function cartRemove(key){ var line = CART.find(function(l){return l.key===key;}); if(line){ track('remove_from_cart', {items:[itemOf(line.id,line.variant,line.qty)]}); } CART = CART.filter(l => l.key !== key); renderCart(); }
 function cartQty(key, delta){
   const l = CART.find(x => x.key === key);
   if(!l) return;
@@ -86,7 +129,7 @@ function cartCount(){ return CART.reduce((n,l)=>n+l.qty,0); }
 function cartTotal(){ return CART.reduce((s,l)=>s + CATALOGUE[l.id].price * l.qty, 0); }
 
 /* ---- DRAWER UI ---- */
-function openCart(){ document.querySelector('.cart-overlay')?.classList.add('open'); document.querySelector('.cart-drawer')?.classList.add('open'); }
+function openCart(){ document.querySelector('.cart-overlay')?.classList.add('open'); document.querySelector('.cart-drawer')?.classList.add('open'); if(CART.length){ track('view_cart', {currency:'GBP', value:cartTotal(), items:CART.map(function(l){return itemOf(l.id,l.variant,l.qty);})}); } }
 function closeCart(){ document.querySelector('.cart-overlay')?.classList.remove('open'); document.querySelector('.cart-drawer')?.classList.remove('open'); }
 
 function pulseCartCount(){
@@ -145,6 +188,7 @@ function renderCart(){
    Until that backend exists, we route to the local checkout page. */
 function checkout(){
   if(CART.length === 0) return;
+  track('begin_checkout', {currency:'GBP', value:cartTotal(), items:CART.map(function(l){return itemOf(l.id,l.variant,l.qty);})});
 
   // Stripe Payment Links are one product per link. If every line in the cart
   // is the same single product, go straight to its link. Otherwise, send the
@@ -207,4 +251,4 @@ function initReveal(){
   els.forEach(e=>io.observe(e));
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{ injectChrome(); initReveal(); });
+document.addEventListener('DOMContentLoaded', ()=>{ injectChrome(); initReveal(); trackPageView(); });
